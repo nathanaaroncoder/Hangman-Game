@@ -43,17 +43,25 @@ for(var i = 0; i < wordLetters.length; i++){
 
 
 
+
+
 document.onkeyup = function(event) {
 
 	var userGuess = event.key
 
 
-	if(guesses < 1) {
+	if(guesses <= 1) {
 		alert("Game Over! You lose!");
-		guesses = 12;
 		reset();
 		currentLetters = [];
+		for(var i = 0; i < wordLetters.length; i++){
+			currentLetters.push("- ");
+			document.getElementById("current-word").textContent =
+			currentLetters.join("");
+		};
 	} 
+
+
 
 	if (wordLetters.indexOf(userGuess) > -1 ){
 
@@ -75,24 +83,24 @@ document.onkeyup = function(event) {
 	 } 
 
 
-	 if(currentLetters.indexOf("- ") < 0 ){
+
+		if(wordLetters.join("") == currentLetters.join("")){
 		wins++;
 		alert("You win! The word was " + hiddenWord)
 		reset();
 		currentLetters = [];
 		document.getElementById("wins").textContent = wins;
-			for(var i = 0; i < wordLetters.length; i++){
+		for(var i = 0; i < wordLetters.length; i++){
 			currentLetters.push("- ");
 			document.getElementById("current-word").textContent =
 			currentLetters.join("");
 			}
+	}
 	
-	
-
-
 
 }
-}
+
+
 
 
 
